@@ -16,6 +16,7 @@ export class GifsService {
     // ! "Confía en mi yo se lo que estoy haciendo". Omite error de TS
     // Cuando no existe historial, devuelve un arreglo vacio
     this._historial = JSON.parse(localStorage.getItem('historial')!) || [];
+    this.resultados = JSON.parse(localStorage.getItem('resultados')!) || [];
   }
 
   get historial() {
@@ -33,6 +34,7 @@ export class GifsService {
       .subscribe( response => {
         console.log( response.data );
         this.resultados = response.data;
+        localStorage.setItem('resultados', JSON.stringify(this.resultados));
     });
   }
 }
